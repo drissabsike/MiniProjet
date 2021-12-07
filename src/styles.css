@@ -1,9 +1,9 @@
 
 input[type=text]{
-  width: 30%;
+  width: 80%;
 }
 input[type=number] {
-  width: 30%;
+  width: 60%;
 }
 
 #msg{

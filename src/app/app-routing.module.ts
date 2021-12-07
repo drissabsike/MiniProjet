@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {ConvertisseurComponent} from "./composents/convertisseur/convertisseur.component";
-import {QuizComponent} from "./composents/quiz/quiz.component";
+import {ConvertisseurComponent} from "./components/convertisseur/convertisseur.component";
+import {QuizComponent} from "./components/quiz/quiz.component";
 
 const routes: Routes = [
   {path: "convertisseur", component:ConvertisseurComponent},

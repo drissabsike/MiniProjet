@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./convertisseur.component.css']
 })
 export class ConvertisseurComponent implements OnInit {
+
+  //Declaration des attributes avec initialisation
   resultEur: string = "0.096";
   resultUsd: string = "0.11";
   resultLivre: string = "0.082";
@@ -13,8 +15,15 @@ export class ConvertisseurComponent implements OnInit {
   resultCanad: string = "0.14";
   resultWon: string = "128.14";
   resultYen: string = "12.35";
-
   msg: string = "";
+
+  /*
+  *la Methode qui a un paramètre de type String
+  *La covertion de type string to Number
+  * Initialisation avec des Zero pour l'affichage
+  * le Calcule des devis
+  * envoyer les résultats vers la page web (Input en Read Only)
+  */
 
   getValueDH(value: string){
     if (value==""){

@@ -8,10 +8,14 @@ import {Component, ElementRef, HostListener, Inject, OnInit, ViewChild} from '@a
 })
 export class QuizComponent implements OnInit {
 
+  /*
+  Declaration des inputs
+  plus la validation d'input 'Name'
+  ViewChild permet d'accéder aux directives
+   */
+
   @ViewChild('name')
   namekey!: ElementRef;
-
-  submitted:boolean=false;
   msg: string = "";
 
   constructor() {
@@ -20,11 +24,13 @@ export class QuizComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //la methode qui démarre le Quiz, avec la validation dinput nom,
   startQuiz(){
     localStorage.setItem("name", this.namekey.nativeElement.value);
     if(this.namekey.nativeElement.value==""){
       this.msg = "Le Nom est Vide !";
     }else {
+      //Code Js redirect vers les questions
     window.location.href = "/question";
     }
   }

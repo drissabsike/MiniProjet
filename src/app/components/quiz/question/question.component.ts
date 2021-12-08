@@ -9,42 +9,65 @@ import {interval} from "rxjs";
 })
 export class QuestionComponent implements OnInit {
 
+  /*
+  * DB : Json File => assets/questions.json
+  * Declaration des attributes
+  * Initialisation
+   */
+
   public name: string="";
+  //Liste des Questions
   public questionList : any = [];
+
+  //id de la question en cours
   public currentQuestion:number = 0;
+
+  //Les points
   public points: number=0;
   progress:string="0";
   counter=60;
   interval$: any;
+  //Quiz Terminé
   isQuizCompleted : boolean = false;
 
   correctAnswer: number = 0;
   inCorrectAnswer: number = 0;
 
+  //Injection du Service
   constructor(private questionService: QuestionService) { }
 
+  //Les methode qui execute au débute
   ngOnInit(): void {
     this.name = localStorage.getItem("name")!;
     this.getAllQuestions();
     this.startCounter();
   }
 
+  //recuperation des questions
   getAllQuestions(){
     this.questionService.getQuestionJson()
       .subscribe(res => {
-        console.log(res.questions);
+        //console.log(res.questions);
         //enregistrement des questions du fichier JSON sur la liste
         this.questionList = res.questions;
       })
   }
 
+  //question suivant
   nextQuestion(){
     this.currentQuestion++;
   }
 
+  //question avant
   previousQuestion(){
     this.currentQuestion--;
   }
+
+  /*
+  * La validation des réponses
+  * La Qestion correct : Plus 10 point
+  * Passé au question suivant
+   */
 
   answer(currentQno: number, option:any){
     if(currentQno === this.questionList.length){
@@ -67,12 +90,10 @@ export class QuestionComponent implements OnInit {
          this.resetCounter();
          this.getProgressPercent();
        }, 1000);
-
-        //this.points -= 10;
       }
   }
 
-  // Chronometer ######################
+  // Chronometer ###################### Demarage du Chrono , Timer (60 sec)
   startCounter(){
     this.interval$ = interval(1000)
       .subscribe(val=>{
@@ -88,17 +109,20 @@ export class QuestionComponent implements OnInit {
       }, 6000000);
     }
 
+    //Stop Chrono
   stopCounter(){
     this.interval$.unsubscribe();
     this.counter=0;
   }
 
+  //Redemaré le chrono
   resetCounter(){
     this.stopCounter();
     this.counter=60;
     this.startCounter();
   }
 
+  //Redmar" le Quiz
   resetQuiz(){
     this.resetCounter();
     this.getAllQuestions();
@@ -108,6 +132,7 @@ export class QuestionComponent implements OnInit {
     this.progress = "0";
   }
 
+  //Affectation la taille des question (9 question) avec le progress sur l'affichage
   getProgressPercent(){
     this.progress = ((this.currentQuestion/this.questionList.length)*100).toString();
     return this.progress;

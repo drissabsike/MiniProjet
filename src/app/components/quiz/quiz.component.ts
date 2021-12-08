@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, HostListener, Inject, OnInit, ViewChild} from '@angular/core';
+
 
 @Component({
   selector: 'app-quiz',
@@ -7,9 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuizComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild('name')
+  namekey!: ElementRef;
+
+  submitted:boolean=false;
+  msg: string = "";
+
+  constructor() {
+  }
 
   ngOnInit(): void {
+  }
+
+  startQuiz(){
+    localStorage.setItem("name", this.namekey.nativeElement.value);
+    if(this.namekey.nativeElement.value==""){
+      this.msg = "Le Nom est Vide !";
+    }else {
+    window.location.href = "/question";
+    }
   }
 
 }

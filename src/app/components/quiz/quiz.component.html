@@ -1,4 +1,11 @@
-<div class="container bg-light py-lg-4">
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz</title>
+</head>
+<body>
+<div class="container bg-light py-lg-4 my-3">
     <h1 class="display-5 fw-bold">Bienvenue au Quiz</h1>
     <p class="col-md-8 fs-4">Ce quiz contiendra un total de 9 questions, chaque question contiendra 10 points</p>
     <h4>Règles</h4>
@@ -15,7 +22,11 @@
   <h2 style="font-family: cursive;text-align: center">Bonne Courage</h2>
   <div class="name col-md-4 my-3">
         <label>Votre Nom:</label>
-    <input type="text" class="form-control" />
+    <form name="myForm" onsubmit="return validateForm()">
+    </form><span id="msg">&nbsp;{{msg}}</span><br>
+    <input required #name type="text" placeholder="Nom..." name="name" class="form-control"><br>
+  <button class="btn btn-dark btn-lg" (click)="startQuiz()">Lancez le Quiz !!</button>
   </div>
-  <button class="btn btn-dark btn-lg" routerLink="/question">Lancez le Quiz !!</button>
 </div>
+</body>
+</html>

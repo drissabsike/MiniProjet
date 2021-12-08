@@ -1,0 +1,22 @@
+.card {
+  max-width: 70%;
+  margin: 0 auto;
+  padding: 5px;
+}
+
+li {
+  list-style-type: none;
+  cursor: pointer;
+  margin: 10px 0;
+
+}
+
+
+li .card:hover{
+  border: 1px solid darkslategray;
+}
+
+ol {
+  padding: 0;
+}
+
